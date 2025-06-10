@@ -1,0 +1,2 @@
+Mycie | True
+Pranie | False
