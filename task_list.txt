@@ -1,3 +1,4 @@
-Mycie|True
-Pranie|False
-Dupa|True
+okej|False
+dupa|False
+asd|False
+asd|False
