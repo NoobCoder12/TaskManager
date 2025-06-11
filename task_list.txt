@@ -1,2 +1,3 @@
-Mycie | True
-Pranie | False
+Mycie|True
+Pranie|False
+Dupa|True

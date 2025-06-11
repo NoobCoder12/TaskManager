@@ -59,11 +59,10 @@ class TaskManager:
             file_path = os.path.dirname(__file__)
             path = os.path.join(file_path, 'task_list.txt')
 
-            with open(path, 'w+', encoding='UTF-8') as file:
-                for item in self.task_list:
-                    line = f'{item.task} | {item.is_completed}\n'
-                    file.write(line)
-                print('File was saved')
+            with open(path, 'w', encoding='UTF-8') as file:
+                for task in self.task_list:
+                    file.write(f"{task.task}|{task.is_completed}\n")
+            print("List was saved")
         except Exception as e:
             print(f'File was not saved: {e}')
 
@@ -74,11 +73,13 @@ class TaskManager:
             # file name or directory can be changed
 
             with open(path, 'r', encoding='UTF-8') as file:
-                lines = [line.strip() for line in file]
-                for line in lines:
-                    task_name, status = line.split('|', 1)
-                    print(task_name)
-                    self.add_task(task_name)
+                self.task_list.clear()
+                for line in file:
+                    name, status = line.strip().split('|', 1)
+                    task = Task(name)
+                    if status == 'True':
+                        task.mark_completed()
+                    self.task_list.append(task)
                 print('File loaded')
         except Exception as e:
             print(f'Could not load file: {e}')
@@ -87,4 +88,6 @@ class TaskManager:
 lista = TaskManager()
 
 lista.load_list()
+lista.show_list()
+lista.complete_task('Pranie')
 lista.show_list()
